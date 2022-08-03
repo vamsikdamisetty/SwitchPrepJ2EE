@@ -2,6 +2,7 @@ package com.telusko;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,10 +30,23 @@ public class AddServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		addNumber(req, resp);
+		int sum = addNumber(req, resp);
+		
+		/*
+		 * Pasing data to other servlet by adding attribute
+		 * we receive in square servlet
+		 */
+//		req.setAttribute("sum", sum);
+		
+		resp.sendRedirect("square?sum="+sum); //Query rewiting (To pass data)
+		/*
+		 * We are trying to Calling a Servlet from Servlet
+		 */
+//		RequestDispatcher rd = req.getRequestDispatcher("square");
+//		rd.forward(req, resp);
 	}
 	
-	void addNumber(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	int addNumber(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		int num1 = Integer.parseInt(req.getParameter("num1"));
 		int num2 = Integer.parseInt(req.getParameter("num2"));
 		
@@ -40,5 +54,6 @@ public class AddServlet extends HttpServlet{
 		System.out.println("Sum is :" + sum);
 		
 		resp.getWriter().print(sum);
+		return sum;
 	}
 }
