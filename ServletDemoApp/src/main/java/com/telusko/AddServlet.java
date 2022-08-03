@@ -20,13 +20,7 @@ public class AddServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int num1 = Integer.parseInt(req.getParameter("num1"));
-		int num2 = Integer.parseInt(req.getParameter("num2"));
-		
-		int sum = num1 + num2;
-		System.out.println("Sum is :" + sum);
-		
-		resp.getWriter().print(sum);
+		addNumber(req, resp);
 	}
 	
 	/*
@@ -35,6 +29,10 @@ public class AddServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		addNumber(req, resp);
+	}
+	
+	void addNumber(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		int num1 = Integer.parseInt(req.getParameter("num1"));
 		int num2 = Integer.parseInt(req.getParameter("num2"));
 		
