@@ -1,23 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
- 
- 	<servlet>
- 		<servlet-name>addNum</servlet-name>
- 		<servlet-class>com.telusko.AddServlet</servlet-class>
- 	</servlet>
- 	
- 	<servlet-mapping>
- 		<servlet-name>addNum</servlet-name>
- 		<url-pattern>/add</url-pattern>
- 	</servlet-mapping>
- 	
- 	<servlet>
- 		<servlet-name>square</servlet-name>
- 		<servlet-class>com.telusko.SquareServlet</servlet-class>
- 	</servlet>
- 	
- 	<servlet-mapping>
- 		<servlet-name>square</servlet-name>
- 		<url-pattern>/square</url-pattern>
- 	</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+	<servlet>
+		<servlet-name>addNum</servlet-name>
+		<servlet-class>com.telusko.AddServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>addNum</servlet-name>
+		<url-pattern>/add</url-pattern>
+	</servlet-mapping>
+
+<!-- 	<servlet>
+		<servlet-name>square</servlet-name>
+		<servlet-class>com.telusko.SquareServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>square</servlet-name>
+		<url-pattern>/square</url-pattern>
+	</servlet-mapping> -->
+
+	<servlet>
+		<servlet-name>configNctx</servlet-name>
+		<servlet-class>com.telusko.ServletConfignContext</servlet-class>
+		<init-param>
+			<param-name>Email</param-name>
+			<param-value>vamsik586@gmail.com</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>configNctx</servlet-name>
+		<url-pattern>/cnfctx</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>Website-name</param-name>
+		<param-value>Vamsi.com</param-value>
+	</context-param>
 </web-app>

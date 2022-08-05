@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class AddServlet extends HttpServlet{
 	
@@ -37,8 +39,17 @@ public class AddServlet extends HttpServlet{
 		 * we receive in square servlet
 		 */
 //		req.setAttribute("sum", sum);
+		HttpSession session = req.getSession();
+		session.setAttribute("sum", sum);
 		
-		resp.sendRedirect("square?sum="+sum); //Query rewiting (To pass data)
+		/*
+		 * USing Cookie to pass CDSID
+		 */
+		
+		Cookie cookie = new Cookie("CDSID", "VKRISHN9");
+		resp.addCookie(cookie);
+		resp.sendRedirect("square");
+//		resp.sendRedirect("square?sum="+sum); //Query rewiting (To pass data)
 		/*
 		 * We are trying to Calling a Servlet from Servlet
 		 */
