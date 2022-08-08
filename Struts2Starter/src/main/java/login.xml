@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+    <package name="login" namespace="/" extends="struts-default">
+    	<interceptors>
+    		<interceptor name="demoInterceptor" class="com.javabrains.interceptors.DemoInterceptor"/>
+    	</interceptors>
+    	<action name="login" class="com.javabrains.action.LoginAction">
+    		<result name = "login" type = "chain">interceptdemo</result>
+    		<result name = "error">/login.jsp</result>
+    		<result name = "input">/login.jsp</result>
+    	</action>
+    	
+    	<action name="interceptdemo">
+    		<interceptor-ref name="demoInterceptor"/>
+    		<result name="success">/searchForm.jsp</result>
+    		<result name="error">/login.jsp</result>
+    	</action>
+    </package>
+
+
+</struts>

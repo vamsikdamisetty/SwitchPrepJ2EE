@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+<!-- The name should always be struts.xml and it should be in the root folder //// Here src/main/java was selected root -->
+<!-- <result name = "success">/success.jsp</result>  mapping the result from action to jsp  -->
+    <package name="default" namespace="/tutorials" extends="struts-default">
+    	<!-- WildCard works both with result and action class too -->
+    	<action name="get*" class="com.javabrains.action.{1}Action" >  <!--method="vamsiExecute" to override execute()  -->
+    		<result name = "success">/success.jsp</result>
+    		<result name = "failure">/error.jsp</result>
+    	</action>
+    	
+    	<!-- By Overriding execute() we can have different methods for diff tasks in same Action class
+    	 Wildcards is possible here as well -->
+    	<action name="add*" class="com.javabrains.action.{1}Action" method="addTutorial"> 
+    		<result name = "success">/success.jsp</result>
+    		<result name = "failure">/error.jsp</result>
+    	</action>
+    </package>
+
+	<!--Just to increase modularity  -->
+    <include file="login.xml"/>
+    
+    <!-- We are not mentioning any actionclass but this will be redirected to searchForm.JSP -->
+    <!-- http://localhost:8080/Struts2Starter/searchForm -->
+    <package name="search" namespace="/" extends="struts-default">
+    	<action name="searchForm" >
+    		<result>/searchForm.jsp</result>
+    	</action>
+    </package>
+    
+    <!-- search* - Action wildcard anything that starts with search will be redirected to searchFom.jsp -->
+    <package name="search2" namespace="/" extends="struts-default">
+    	<!-- <action name="search*" >
+    		<result>/searchForm.jsp</result>
+    	</action> -->
+    	
+    	<!-- Substitute the extra text  -->
+    	 <action name="search*" >
+    		<result>/search{1}.jsp</result>
+    	</action>
+    </package>
+    
+    <!-- Struts2 check the actions from top to bottom.. So in case of conflicts top one is picked
+    So while writing wildcards write the more specific one first -->
+</struts>
